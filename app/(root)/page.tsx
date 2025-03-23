@@ -17,7 +17,6 @@ const Page = async () => {
     const hasPastedInterviews = userInterviews?.length > 0;
     const hasUpcomingInterviews = latestInterviews?.length > 0;
 
-    console.log(userInterviews);
     return (
         <>
             <section className="card-cta">
