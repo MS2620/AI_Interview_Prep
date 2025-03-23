@@ -11,6 +11,7 @@ interface FormFieldProps<T extends FieldValues> {
     type?: 'text' | 'password' | 'email' | 'file'
 }
 
+// @ts-expect-error all because of the T
 const FormField = ({control, name, label, placeholder, type = "text"} : FormFieldProps<T>) => (
     <Controller
         name={name}
