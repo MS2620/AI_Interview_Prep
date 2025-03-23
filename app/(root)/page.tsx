@@ -3,7 +3,8 @@ import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import InterviewCard from "@/components/InterviewCard";
-import {getCurrentUser, getInterviewByUserId, getLatestInterviews} from "@/lib/actions/auth.action";
+import {getCurrentUser} from "@/lib/actions/auth.action";
+import {getInterviewByUserId, getLatestInterviews} from "@/lib/actions/general.action";
 
 const Page = async () => {
     const user = await getCurrentUser()
@@ -15,6 +16,8 @@ const Page = async () => {
 
     const hasPastedInterviews = userInterviews?.length > 0;
     const hasUpcomingInterviews = latestInterviews?.length > 0;
+
+    console.log(userInterviews);
     return (
         <>
             <section className="card-cta">
@@ -38,7 +41,7 @@ const Page = async () => {
                 <div className='interviews-section'>
                     {hasPastedInterviews ? (
                         userInterviews?.map((interview) => (
-                            <InterviewCard {...interview} key={interview.id}/>
+                            <InterviewCard {...interview} key={interview.id} interviewId={interview.id} />
                         ))) : (
                             <p>You haven&apos;t taken any interviews yet.</p>
                         )
@@ -51,7 +54,7 @@ const Page = async () => {
                 <div className='interviews-section'>
                     {hasUpcomingInterviews ? (
                         latestInterviews?.map((interview) => (
-                            <InterviewCard {...interview} key={interview.id}/>
+                            <InterviewCard {...interview} key={interview.id} interviewId={interview.id}/>
                         ))) : (
                             <p>There are no new interviews available.</p>
                         )
